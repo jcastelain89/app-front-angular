@@ -1,0 +1,23 @@
+<form (submit)="add(productTitle.value); productTitle.value=''">
+    <input #productTitle type="text" placeholder="Product Name">
+    <input type="submit" value="SUBMIT">
+</form>
+
+<table>
+    <tr *ngFor="let product of products">
+        <td>
+            <a (click)="edit(product)">
+                <span *ngIf="product!==editProduct">{{product.title}}</span>
+                <input *ngIf="product===editProduct" [(ngModel)]="product.title" (blur)="update()"
+                    (keyup.enter)="update()">
+            </a>
+        </td>
+        <td>
+            <button (click)="delete(product)">
+                Delete
+            </button>
+        </td>
+    </tr>
+</table>
+
+<span>click on item to edit</span>
